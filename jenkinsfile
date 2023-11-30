@@ -26,11 +26,11 @@ pipeline {
                 script {
                     //Job 2: Push Ansible configuration on the test server to install Docker
                     sh "rm -rf /tmp/ansibletemp ||:"
-                    sh "git clone https://github.com/Saurabhj0/DevOps-CICD.git /tmp/ansibletemp"
-                    sh "ssh -o StrictHostKeyChecking=no edureka@172.31.7.144 'rm -rf ~/installation.yml ||:'"
+                    sh "git clone https://github.com/siddhantamishra/Edureka_Devops_Cert_Proj.git /tmp/ansibletemp"
+                    sh "ssh -o StrictHostKeyChecking=no edureka@172.31.4.86 'rm -rf ~/installation.yml ||:'"
                     sh "exit"
-                    sh "scp /tmp/ansibletemp/installation.yml edureka@172.31.7.144:~/"
-                    sh "ssh -o StrictHostKeyChecking=no edureka@172.31.7.144 'ansible-playbook -v ~/installation.yml'"
+                    sh "scp /tmp/ansibletemp/installation.yml edureka@172.31.4.86:~/"
+                    sh "ssh -o StrictHostKeyChecking=no edureka@172.31.4.86 'ansible-playbook -v ~/installation.yml'"
                     sh "exit"
                     sh "rm -rf /tmp/ansibletemp"
                 }
@@ -43,7 +43,7 @@ pipeline {
                 script {
                     try {
                         sh "rm -rf /tmp/php-web ||:"
-                        sh "git clone https://github.com/Saurabhj0/DevOps-CICD.git /tmp/php-web"
+                        sh "git clone https://github.com/siddhantamishra/Edureka_Devops_Cert_Proj.git /tmp/php-web"
                         sh "cd /tmp/php-web"
                         sh 'docker build -t php-website .'
                         sh 'docker run -d -p 8010:80 php-website'
