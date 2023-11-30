@@ -27,8 +27,6 @@ pipeline {
                     //Job 2: Push Ansible configuration on the test server to install Docker
                     sh "rm -rf /tmp/ansibletemp ||:"
                     sh "git clone https://github.com/siddhantamishra/Edureka_Devops_Cert_Proj.git /tmp/ansibletemp"
-                    sh "ssh -o StrictHostKeyChecking=no edureka@172.31.4.86 'rm -rf ~/installation.yml ||:'"
-                    sh "exit"
                     sh "scp /tmp/ansibletemp/installation.yml edureka@172.31.4.86:~/"
                     sh "ssh -o StrictHostKeyChecking=no edureka@172.31.4.86 'ansible-playbook -v ~/installation.yml'"
                     sh "exit"
